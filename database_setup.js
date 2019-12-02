@@ -6,7 +6,7 @@ function setup(){
     db.run("INSERT INTO users(Username, Password) VALUES('hroeder2', 'password2')");
 }
 setup();
-/*
+
 db.run(`INSERT INTO langs(name) VALUES(?)`, ['C'], function(err) {
     if (err) {
       return console.log(err.message);
@@ -14,4 +14,4 @@ db.run(`INSERT INTO langs(name) VALUES(?)`, ['C'], function(err) {
     // get the last insert id
     console.log(`A row has been inserted with rowid ${this.lastID}`);
 });
-*/
+
