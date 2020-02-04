@@ -4,6 +4,7 @@ import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import TableEntry from './components/TableEntry'
 import CreateAccount from './components/CreateAccount';
+import Login from './components/Login';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
 
@@ -38,7 +39,7 @@ class App extends Component {
           <Header/>
           <NavBar />
           <Route path = "/signup"><CreateAccount updateData = {this.getName}/></Route>
-          <Route path = "/login">Login Page Here</Route>
+          <Route path = "/login"><Login updateData = {this.getName}/></Route>
           <Route path = "/accounts">
             <table>
               <thead>

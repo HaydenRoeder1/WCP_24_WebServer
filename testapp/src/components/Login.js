@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class CreateAccount extends Component {
+class Login extends Component {
 
   constructor(props){
     super(props);
@@ -18,7 +18,7 @@ class CreateAccount extends Component {
       console.log(data);
       JSON.stringify(data);
       
-      const api_call = await fetch('http://127.0.0.1:3001/createAccount', {
+      const api_call = await fetch('http://127.0.0.1:3001/login', {
         method: 'post', 
         headers: {
           'Accept': 'application/json',
@@ -33,7 +33,7 @@ class CreateAccount extends Component {
   render(){
     return(
         <div className = "accountForm">
-          <h1>Create an Account</h1>
+          <h1>Login</h1>
           <form onSubmit={this.onSubmit}>
               <label htmlFor="username">Enter username</label>
               <br/>
@@ -43,11 +43,11 @@ class CreateAccount extends Component {
               <br/>
               <input id="password" name="password" type="password" />
               <br/>
-              <button>Create Account</button>
+              <button>Login</button>
           </form>
         </div>
     );
   }
 }
 
-export default CreateAccount;
+export default Login;

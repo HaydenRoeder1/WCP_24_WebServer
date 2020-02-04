@@ -55,7 +55,7 @@ app.post('/createAccount', (req, res) => {
     var data = new Array();
     var usernameExists = false;
     db.each('SELECT * FROM users', (err, row) => {
-        if(row.Username == req.body.Username && usernameExists == false){
+        if(row.username == req.body.username && usernameExists == false){
             usernameExists = true;
             console.log("USERNAME MATCH");
         }
@@ -64,7 +64,7 @@ app.post('/createAccount', (req, res) => {
             res.json({err: "Username already exists"});
         }else{
             data = new Array();
-            db.run("INSERT INTO users(username, password, level) VALUES(?,?,?)",req.body.Username, req.body.Password, 1);
+            db.run("INSERT INTO users(username, password, level) VALUES(?,?,?)",req.body.username, req.body.password, 1);
             db.each('SELECT * FROM users', (err, row) => {
                 data.push(row);
             }, function(){
@@ -73,6 +73,32 @@ app.post('/createAccount', (req, res) => {
         }
     
     })
+});
+app.post('/login', (req, res)=>{
+    console.log("Login");
+    var data = new Array();
+    var usernameExists = false;
+    db.each('SELECT * FROM users', (err, row) => {
+        if(row.username == req.body.username && usernameExists == false){
+            usernameExists = true;
+            console.log("USERNAME MATCH, checking password");
+            if(row.password == req.body.password){
+                data.push(row);
+            }else{
+                data.push({
+                    error: "Incorrect Password"
+                });
+            }
+        }
+    }, function(){
+        if(usernameExists == false){//Should not announce this since it confirms/denies usernames exist
+            res.json({error: "Incorrect Username"})
+        }else{
+            res.json(data);
+        }
+        
+    });
+
 });
 app.get('/clearData', (req,res) => {
     console.log("Clear Data");
