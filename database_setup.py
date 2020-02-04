@@ -11,7 +11,6 @@ def create_connection(db_file):
     finally:
         return conn
 
-
 def run_sql(conn, sql_string):
     
     c = conn.cursor()
@@ -20,14 +19,11 @@ def run_sql(conn, sql_string):
     rows = c.fetchall()
     return rows
     
-
 def insert_data(conn, sql_string, params):
-    
     c = conn.cursor()
     c.execute(sql_string, params)
     return c.lastrowid
     
-
 def print_users(connection, get_users_string):
     result = run_sql(connection, get_users_string)
     for i in result:
@@ -75,7 +71,7 @@ def main():
     get_users_string = "SELECT * from users"
 
     #SETUP DATABASE CONNECTION
-    connection = create_connection(r"D:\Websites\Node\Test2\test_database")
+    connection = create_connection(r"users_db")
     
     
     

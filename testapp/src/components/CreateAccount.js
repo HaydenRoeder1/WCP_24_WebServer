@@ -18,7 +18,7 @@ class CreateAccount extends Component {
       console.log(data);
       JSON.stringify(data);
       
-      const api_call = await fetch('http://127.0.0.1:3001/test', {
+      const api_call = await fetch('http://127.0.0.1:3001/createAccount', {
         method: 'post', 
         headers: {
           'Accept': 'application/json',
@@ -32,15 +32,20 @@ class CreateAccount extends Component {
   }
   render(){
     return(
-        <form onSubmit={this.onSubmit}>
-            <label htmlFor="username">Enter username</label>
-            <input id="username" name="username" type="text" />
-            <br/>
-            <label htmlFor="password">Enter your password</label>
-            <input id="password" name="password" type="password" />
-            <br/>
-            <button>Create Account</button>
-        </form>
+        <div className = "accountForm">
+          <h1>Create an Account</h1>
+          <form onSubmit={this.onSubmit}>
+              <label htmlFor="username">Enter username</label>
+              <br/>
+              <input id="username" name="username" type="text" />
+              <br/>
+              <label htmlFor="password">Enter your password</label>
+              <br/>
+              <input id="password" name="password" type="password" />
+              <br/>
+              <button>Create Account</button>
+          </form>
+        </div>
     );
   }
 }

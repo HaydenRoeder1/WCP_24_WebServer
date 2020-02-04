@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('test_database2');
+const db = new sqlite3.Database('users_db');
 
 /*
 db.run(`INSERT INTO langs(name) VALUES(?)`, ['C'], function(err) {
@@ -46,7 +46,7 @@ app.get('/data', (req, res) => {
     })
 });
 
-app.post('/test', (req, res) => {
+app.post('/createAccount', (req, res) => {
     console.log("Post Request?");
     //console.log(req);;
     console.log(req.url);
@@ -64,7 +64,7 @@ app.post('/test', (req, res) => {
             res.json({err: "Username already exists"});
         }else{
             data = new Array();
-            db.run("INSERT INTO users(Username, Password) VALUES(?,?)",req.body.Username, req.body.Password);
+            db.run("INSERT INTO users(username, password, level) VALUES(?,?,?)",req.body.Username, req.body.Password, 1);
             db.each('SELECT * FROM users', (err, row) => {
                 data.push(row);
             }, function(){

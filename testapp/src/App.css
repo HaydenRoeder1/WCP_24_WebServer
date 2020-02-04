@@ -2,21 +2,70 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.navbutton {
+  background-color: white;
+  border: none;
+  color: #005a43;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.navbutton:hover{
+  background-color: rgb(64, 105, 71);
   color: white;
+  border: none;
+}
+.header{
+  background-color: #005a43;
+}
+.logo{
+  border-width: 5px;
+  border-style: solid;
+  border-color: black;
 }
 
-.App-link {
-  color: #09d3ac;
+.accountForm{
+
+}
+.accountForm input{
+  background-color: white;
+  border: none;
+  border-bottom-style: solid;
+  border-bottom-color: #005a43;
+  border-bottom-width: 2px;
+  border-left-style: solid;
+  border-left-color: #005a43;
+  border-left-width: 2px;
+}
+.accountForm input:hover{
+  background-color: white;
+  border: none;
+  border-bottom-style: solid;
+  border-bottom-color: #04b488;
+  border-bottom-width: 2px;
+  border-left-style: solid;
+  border-left-color: #04b488;
+  border-left-width: 2px;
+}
+.accountForm input:active{
+  background-color: white;
+  border: none;
+  border-bottom-style: solid;
+  border-bottom-color: #04b488;
+  border-bottom-width: 2px;
+  border-left-style: solid;
+  border-left-color: #04b488;
+  border-left-width: 2px;
+}
+.accountForm input:a{
+  background-color: rgb(182, 182, 182);
+  border: none;
+  border-bottom-style: solid;
+  border-bottom-color: #04b488;
+  border-bottom-width: 2px;
+  border-left-style: solid;
+  border-left-color: #04b488;
+  border-left-width: 2px;
 }
