@@ -10,10 +10,12 @@ class CreateAccount extends Component {
       event.preventDefault();
       const username = event.target.elements.username.value;
       const password = event.target.elements.password.value;
+      const level = event.target.elements.level.value;
 
       const data = {
         username: username,
-        password: password
+        password: password,
+        level: level
       }
       console.log(data);
       JSON.stringify(data);
@@ -28,7 +30,6 @@ class CreateAccount extends Component {
       }).catch();
       const retData = await api_call.json();
       console.log(retData);
-      this.props.updateData();
   }
   render(){
     return(
@@ -42,6 +43,10 @@ class CreateAccount extends Component {
               <label htmlFor="password">Enter your password</label>
               <br/>
               <input id="password" name="password" type="password" />
+              <br/>
+              <label htmlFor="level">Enter Account Level (0,1,2) -> (Consumer, Utility, Admin)</label>
+              <br/>
+              <input id = "level" name = "level" type = "text"/>
               <br/>
               <button>Create Account</button>
           </form>

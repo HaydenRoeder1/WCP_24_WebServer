@@ -1,7 +1,13 @@
 .App {
   text-align: center;
+  background-color: #ffffff;
+  min-height: 100vh;
 }
-
+.navigation{
+  border-bottom-color: black;
+  border-bottom-width: 5px;
+  border-bottom-style: solid;
+}
 .navbutton {
   background-color: white;
   border: none;
@@ -26,9 +32,6 @@
   border-color: black;
 }
 
-.accountForm{
-
-}
 .accountForm input{
   background-color: white;
   border: none;
@@ -68,4 +71,41 @@
   border-left-style: solid;
   border-left-color: #04b488;
   border-left-width: 2px;
+}
+.subHeader{
+  font-size: 50px;
+  background-color: #005a43;
+  color: white;
+  border-width: 5px;
+  border-color: black;
+  border-bottom-style: solid;
+  border-top-style: solid;
+}
+.utilityInterface{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.meterTable{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: inline-block;
+
+}
+table{
+  width: 100%;
+}
+
+table, th, td{
+  text-align: center;
+  border: 1px solid black;
+}
+
+.mapContainer{
+  display: inline-block;
+  border-width: 5px;
+  border-color: black;
+  border-style: solid;
 }

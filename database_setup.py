@@ -12,10 +12,8 @@ def create_connection(db_file):
         return conn
 
 def run_sql(conn, sql_string):
-    
     c = conn.cursor()
     c.execute(sql_string)
-
     rows = c.fetchall()
     return rows
     

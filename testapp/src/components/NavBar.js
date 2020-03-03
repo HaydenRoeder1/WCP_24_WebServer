@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col'
 const NavBar = (props) => {
       
 	return (
-            <div style = {{backgroundColor: "#005a43"}}>
+            <div className = "navigation" style = {{backgroundColor: "#005a43"}}>
                   <Link to = "/signup">
                         <button className = "navbutton">
                               Create Account

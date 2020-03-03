@@ -6,6 +6,9 @@ class Login extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
   }
+  state = {
+    error: ""
+  }
   onSubmit = async (event) =>{
       event.preventDefault();
       const username = event.target.elements.username.value;
@@ -28,7 +31,15 @@ class Login extends Component {
       }).catch();
       const retData = await api_call.json();
       console.log(retData);
-      this.props.updateData();
+      console.log(retData);
+      if(retData.error){
+        this.setState({
+          error: retData.error
+        });
+      }else{
+        this.props.updateUserLevel(retData.level);
+      }
+      
   }
   render(){
     return(
@@ -43,6 +54,7 @@ class Login extends Component {
               <br/>
               <input id="password" name="password" type="password" />
               <br/>
+              <p>{this.state.error}</p>
               <button>Login</button>
           </form>
         </div>
