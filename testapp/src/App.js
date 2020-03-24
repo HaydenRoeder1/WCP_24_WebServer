@@ -9,19 +9,22 @@ import Header from './components/Header';
 import NavBar from './components/NavBar';
 import AccountView from './components/AccountView';
 import UtilityInterface from './components/UtilityInterface';
+import ConsumerInterface from './components/ConsumerInterface';
 
 const SERVER = "http://127.0.0.1:3001/"
 class App extends Component {
   state = {
-    loginLevel: -1
+    loginLevel: -1,
+    userID: -1
   }
-  updateUserLevel = (level) => {
+  updateUserLevel = (level, userID) => {
     this.setState({
-      loginLevel: level
+      loginLevel: level,
+      userID: userID
     });
   }
   render(){
-    if(this.state.loginLevel == -2){//Display login/create interface
+    if(this.state.loginLevel == -1){//Display login/create interface
       return(
       <Router>
         <div className = "App">
@@ -39,11 +42,12 @@ class App extends Component {
         <Router>
           <div className = "App">
             <Header/>
-            <p>Consumer Interface</p>
+            <br/>
+            <ConsumerInterface userID = {this.state.userID} server = {SERVER}/>
           </div>
         </Router>
       )
-    }else if(this.state.loginLevel == 1 || -1){//Display Utility Interface
+    }else if(this.state.loginLevel == 1){//Display Utility Interface
       return(
         <Router>
           <div className = "App">

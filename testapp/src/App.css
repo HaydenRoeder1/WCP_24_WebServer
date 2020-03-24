@@ -108,4 +108,15 @@ table, th, td{
   border-width: 5px;
   border-color: black;
   border-style: solid;
+  width: 50vw;
+}
+
+.googleMapContainer{
+  display: flex;
+  justify-content: flex-start;
+}
+.mapControl{
+  width: 50vw;
+  display: flex;
+  justify-content: center;
 }

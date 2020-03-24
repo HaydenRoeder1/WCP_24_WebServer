@@ -6,6 +6,9 @@ class CreateAccount extends Component {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
   }
+  state = {
+    error: ""
+  }
   onSubmit = async (event) =>{
       event.preventDefault();
       const username = event.target.elements.username.value;
@@ -29,6 +32,14 @@ class CreateAccount extends Component {
         body: JSON.stringify(data)
       }).catch();
       const retData = await api_call.json();
+      if(retData.error){
+        this.setState({
+          error: retData.error
+        });
+      }else{
+        console.log(retData)
+        this.props.updateUserLevel(retData.level, retData.id);
+      }
       console.log(retData);
   }
   render(){
@@ -48,6 +59,7 @@ class CreateAccount extends Component {
               <br/>
               <input id = "level" name = "level" type = "text"/>
               <br/>
+              <p style = {{color: "red"}}>{this.state.error}</p>
               <button>Create Account</button>
           </form>
         </div>

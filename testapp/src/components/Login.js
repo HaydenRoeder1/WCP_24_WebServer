@@ -37,7 +37,8 @@ class Login extends Component {
           error: retData.error
         });
       }else{
-        this.props.updateUserLevel(retData.level);
+        console.log(retData)
+        this.props.updateUserLevel(retData.level, retData.id);
       }
       
   }
@@ -54,7 +55,7 @@ class Login extends Component {
               <br/>
               <input id="password" name="password" type="password" />
               <br/>
-              <p>{this.state.error}</p>
+              <p style = {{color: "red"}}>{this.state.error}</p>
               <button>Login</button>
           </form>
         </div>

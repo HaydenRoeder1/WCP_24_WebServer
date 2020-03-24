@@ -8,7 +8,9 @@ class MeterTable extends Component{
 	  state = {
         meters: [],
         cur_meter: 1,
-        cur_meter_data: []
+        cur_meter_data: [],
+        display_range_start: 0,
+        display_range_end: 24
     }
 
     getData = async () => {
@@ -114,6 +116,27 @@ class MeterTable extends Component{
       })
       console.log(ret_data);
     }
+    decreaseMeterRange = () => {
+      if(this.state.display_range_start - 25 < 0){
+        this.setState({
+          display_range_start: 0,
+          display_range_end: 24
+        })
+      }else{
+        this.setState({
+          display_range_start: this.state.display_range_start - 25,
+          display_range_end: this.state.display_range_end - 25
+        })
+      }
+    }
+    increaseMeterRange = () => {
+      if(this.state.display_range_start + 25 < this.state.cur_meter_data.length){
+        this.setState({
+          display_range_start: this.state.display_range_start + 25,
+          display_range_end: this.state.display_range_end + 25
+        })
+      }
+    }
     
     componentDidMount(){
       this.getData();
@@ -152,6 +175,12 @@ class MeterTable extends Component{
     
                 
                 <h1 className = "subHeader">Meter {this.state.cur_meter}</h1>
+                <span>Entries {this.state.display_range_start} - {this.state.display_range_end}</span>
+                <br/>
+                <button onClick = {this.decreaseMeterRange}>Previous</button>
+                <button onClick = {this.increaseMeterRange}>Next</button>
+                
+                
                 <table>
                   <thead>
                     <tr>
@@ -173,23 +202,26 @@ class MeterTable extends Component{
                   </thead>
                   <tbody>
                     {this.state.cur_meter_data.map((e, i) => {
-                      return(<tr key = {i.toString()}>
-                                <td>{e.timestamp}</td>
-                                <td>{e.realPowerMin}</td>
-                                <td>{e.realPowerMax}</td>
-                                <td>{e.realPowerAvg}</td>
-                                <td>{e.reactivePowerMin}</td>
-                                <td>{e.reactivePowerMax}</td>
-                                <td>{e.reactivePowerAvg}</td>
-                                <td>{e.voltageMin}</td>
-                                <td>{e.voltageMax}</td>
-                                <td>{e.voltageAvg}</td>
-                                <td>{e.currentMin}</td>
-                                <td>{e.currentMax}</td>
-                                <td>{e.currentAvg}</td>
-                                <td>{e.energy}</td>
-                              </tr>
-                            )
+                        if(i >= this.state.display_range_start && i <= this.state.display_range_end){
+                          return(
+                            <tr key = {i.toString()}>
+                              <td>{e.timestamp}</td>
+                              <td>{e.realPowerMin}</td>
+                              <td>{e.realPowerMax}</td>
+                              <td>{e.realPowerAvg}</td>
+                              <td>{e.reactivePowerMin}</td>
+                              <td>{e.reactivePowerMax}</td>
+                              <td>{e.reactivePowerAvg}</td>
+                              <td>{e.voltageMin}</td>
+                              <td>{e.voltageMax}</td>
+                              <td>{e.voltageAvg}</td>
+                              <td>{e.currentMin}</td>
+                              <td>{e.currentMax}</td>
+                              <td>{e.currentAvg}</td>
+                              <td>{e.energy}</td>
+                            </tr>
+                          )
+                        }
                       })
                     }
                   </tbody>

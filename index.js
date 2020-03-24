@@ -56,25 +56,31 @@ app.get('/', (req, res) => {
     
         var data = new Array();
         var usernameExists = false;
-        user_db.each('SELECT * FROM users', (err, row) => {
-            if(row.username == req.body.username && usernameExists == false){
-                usernameExists = true;
-                console.log("USERNAME MATCH");
-            }
-        }, function(){
-            if(usernameExists == true){
-                res.json({err: "Username already exists"});
-            }else{
-                data = new Array();
-                user_db.run("INSERT INTO users(username, password, level) VALUES(?,?,?)",req.body.username, req.body.password, req.body.level);
-                user_db.each('SELECT * FROM users', (err, row) => {
-                    data.push(row);
-                }, function(){
-                    res.json(data);
-                })
-            }
-        
-        })
+        if(req.body.username == ""){
+            res.json({error: "Enter a username"});
+        }else if(req.body.password == ""){
+            res.json({error: "Enter a password"})
+        }else{
+            user_db.each('SELECT * FROM users', (err, row) => {
+                if(row.username == req.body.username && usernameExists == false){
+                    usernameExists = true;
+                    console.log("USERNAME MATCH");
+                }
+            }, function(){
+                if(usernameExists == true){
+                    res.json({error: "Username already exists"});
+                }else{
+                    data = new Array();
+                    user_db.run("INSERT INTO users(username, password, level) VALUES(?,?,?)",req.body.username, req.body.password, req.body.level);
+                    user_db.each('SELECT * FROM users', (err, row) => {
+                        data.push(row);
+                    }, function(){
+                        res.json(data);
+                    })
+                }
+            
+            })
+        }
     });
     
 
@@ -120,7 +126,6 @@ app.get('/', (req, res) => {
         var data = new Array();
         console.log(req.body.userID);
         user_db.each("SELECT * FROM meter_map WHERE meterID=?", req.body.meterID, (err, row) => {
-            console.log("test");
             data.push(row);
         }, function(){
             if(data.length === 1){
@@ -132,6 +137,16 @@ app.get('/', (req, res) => {
             res.json({code: "SUCCESS"});
         })
     })
+    app.post('/userToMeters', (req, res) => {
+        console.log("Get meters from userID");
+        var data = new Array();
+        user_db.each("SELECT * FROM meter_map WHERE userID=?", req.body.userID, (err, row) => {
+            data.push(row);
+        }, function(){
+            res.json(data);
+        })
+    })
+
     app.get('/getMeterMap', (req, res) => {
         console.log("Get Meter Map")
         var data = new Array();
@@ -159,12 +174,6 @@ app.get('/', (req, res) => {
 
 
 }
-
-{//Meter Data
-
-}
-
-//Starts a sim_meter process
 
 {//Meter Communication
 
@@ -206,7 +215,7 @@ app.get('/getMeterList', (req, res) => {
 app.get('/deleteAllMeters', (req, res) => {
     console.log("Got request to delete meter data")
     meter_db.run("DELETE FROM meters");
-    res.send({result: "FAILED"});
+    res.send({result: "SUCCESS"});
 })
 
 app.post('/getMeterData', (req, res) => {
@@ -220,7 +229,12 @@ app.post('/getMeterData', (req, res) => {
         res.json(data);
     })
 })
-
+app.post('/deleteMeterData', (req, res) => {
+    console.log("Delete data for meter: " + req.body.meter_id);
+    const meterx_db = new sqlite3.Database('meter' + req.body.meter_id + '_db');
+    meterx_db.run('DELETE FROM data');
+    res.send({result: "SUCCESS"});
+})
 
 }
 

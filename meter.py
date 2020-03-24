@@ -53,21 +53,38 @@ class Meter:
         #Average Monthly Household Energy = 1,000,000 Wh = 3600000000 Joules
         #Average Household Power = 1370W
         #Average Energy Per Five Minutes= 411000 Joules = 114 Wh 
-        time = timeStamp
-        energy = 114 + random.randrange(-20,20)
-        realPower = 1370 + random.randrange(-200, 200)
-        realPowerMin = realPower - random.randrange(0,200)
-        realPowerMax = realPower + random.randrange(0,200)
-        reactivePower = 800 + random.randrange(-200, 200)
-        reactivePowerMin = reactivePower - random.randrange(0,200)
-        reactivePowerMax = reactivePower + random.randrange(0,200)
-        voltage = 120 + random.randrange(-5, 5)
-        voltageMin = voltage - random.randrange(0, 5)
-        voltageMax = voltage + random.randrange(0, 5)
-        current = float(realPower) / float(voltage)
-        currentMin = float(realPowerMin) / float(voltageMin)
-        currentMax = float(realPowerMax) / float(voltageMax)
-        self.insertData(time, realPowerMin, realPowerMax, realPower, reactivePowerMin, reactivePowerMax, reactivePower, voltageMin, voltageMax, voltage, currentMin, currentMax, current, energy)
+        if(self.active):
+            time = timeStamp
+            energy = 114 + random.randrange(-20,20)
+            realPower = 1370 + random.randrange(-200, 200)
+            realPowerMin = realPower - random.randrange(0,200)
+            realPowerMax = realPower + random.randrange(0,200)
+            reactivePower = 800 + random.randrange(-200, 200)
+            reactivePowerMin = reactivePower - random.randrange(0,200)
+            reactivePowerMax = reactivePower + random.randrange(0,200)
+            voltage = 120 + random.randrange(-5, 5)
+            voltageMin = voltage - random.randrange(0, 5)
+            voltageMax = voltage + random.randrange(0, 5)
+            current = float(realPower) / float(voltage)
+            currentMin = float(realPowerMin) / float(voltageMin)
+            currentMax = float(realPowerMax) / float(voltageMax)
+            self.insertData(time, realPowerMin, realPowerMax, realPower, reactivePowerMin, reactivePowerMax, reactivePower, voltageMin, voltageMax, voltage, currentMin, currentMax, current, energy)
+        else:
+            time = timeStamp
+            energy = 0
+            realPower = 0
+            realPowerMin = 0
+            realPowerMax = 0
+            reactivePower = 0
+            reactivePowerMin = 0
+            reactivePowerMax = 0
+            voltage = 0
+            voltageMin = 0
+            voltageMax = 0
+            current = 0
+            currentMin = 0
+            currentMax = 0
+            self.insertData(time, realPowerMin, realPowerMax, realPower, reactivePowerMin, reactivePowerMax, reactivePower, voltageMin, voltageMax, voltage, currentMin, currentMax, current, energy)
 
 
 

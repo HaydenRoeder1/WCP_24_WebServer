@@ -19,7 +19,7 @@ class UtilityInterface extends Component{
                 <p className = {"subHeader"}>Utility Interface</p>
                 <br/>
                 <GoogleMapContainer meters = {this.state.meters} server = {this.props.server}/>
-                <br/>
+                <div style = {{minHeight: "5vh"}}/>
                 <MeterTable setParentState = {this.updateState} server = {this.props.server}/>
             </div>
             

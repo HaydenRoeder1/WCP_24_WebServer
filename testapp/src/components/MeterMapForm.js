@@ -89,8 +89,8 @@ class MeterMapForm extends Component{
                         <table style = {{float: "right"}}>
                             <thead>
                                 <tr>
-                                    <th>User ID</th>
                                     <th>Meter ID</th>
+                                    <th>User ID</th>
                                     <th>Latitude</th>
                                     <th>Longitude</th>
                                 </tr>
@@ -99,8 +99,8 @@ class MeterMapForm extends Component{
                                 {this.state.meterMap.map((e, i) => {
                                     return(
                                         <tr key = {i.toString()}>
-                                            <td>{e.userID}</td>
                                             <td>{e.meterID}</td>
+                                            <td>{e.userID}</td>
                                             <td>{e.latitude}</td>
                                             <td>{e.longitude}</td>
                                         </tr>

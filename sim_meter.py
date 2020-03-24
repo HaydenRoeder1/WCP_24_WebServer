@@ -60,9 +60,8 @@ def main():
             print(m)
             meterObjects.append(meter.Meter(m['id'], m['meterIP'], m['active']))
         for m in meterObjects:
-            if(m.active == "running"): #Should probably fill the row with garbage values if the meter isn't running so the heatmap isn't messed up
-                m.generateData(dt_string)
-                print(str(m.id) + ": " + str(m.getData(dt_string)))
+            m.generateData(dt_string)
+            print(str(m.id) + ": " + str(m.getData(dt_string)))
         time.sleep(60.0 - ((time.time() - starttime) % 60.0))
     
     conn.close()
