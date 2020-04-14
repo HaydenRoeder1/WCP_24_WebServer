@@ -114,7 +114,7 @@ class GoogleMapContainer extends Component{
             <div className = {"googleMapContainer"}>
                 <div className = {"mapContainer"} style={{ height: '50vh', width: '50%'}}>
                     <GoogleMapReact
-                        bootstrapURLKeys={{ key: "AIzaSyBTmeBUbYGglvwZVc86coQOqdyffSeMYWQ" }}
+                        bootstrapURLKeys={{ key: /*INSERT ACTUAL API KEY*/ "api_key" }}
                         defaultCenter={this.props.center}
                         defaultZoom={this.props.zoom}
                         heatmapLibrary={true}
